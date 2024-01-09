@@ -134,8 +134,8 @@ def metrics_at_k(image_input, text_input, model, device, Loader, k_vals, batch_s
 
 
 def test(image_test, text_test, model, device, test_loader, train_mode):
-
-    recall_t2i, recall_i2t, mAP_t2i, mAP_i2t = metrics_at_k(image_test, text_test, model, device, Loader = test_loader, k_vals=[1,5,10], batch_size=test_loader.batch_size, train_mode=train_mode)
+    k_vals = [1,5,10]
+    recall_t2i, recall_i2t, mAP_t2i, mAP_i2t = metrics_at_k(image_test, text_test, model, device, Loader = test_loader, k_vals=k_vals, batch_size=test_loader.batch_size, train_mode=train_mode)
 
     print("Text-to-image Recall@K")
     for k, x in zip(k_vals, recall_t2i):
