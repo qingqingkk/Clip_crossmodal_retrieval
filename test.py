@@ -3,7 +3,7 @@ import torch
 from util import encode_dataset, get_map
 
 def metrics_at_k(image_input, text_input, model, Loader, k_vals, batch_size, train_mode):
-    
+    device = model.device
     print("Encoding all data...")
     image_input = image_input.to(device)
     text_input = text_input.to(device)
