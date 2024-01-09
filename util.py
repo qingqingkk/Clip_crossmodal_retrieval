@@ -417,16 +417,16 @@ def get_dataset(args):
         image_val, text_val, _, _ = encode_dataset(freeze, device, val_loader, bz)
 
         # Save to a file using pickle
-        with open(os.path.join(save_path, f'encoded_data/{dataset_type}/image_train.pkl'), 'wb') as file:
+        with open(os.path.join(save_path, f'image_train.pkl'), 'wb') as file:
             pickle.dump(image_train, file)
 
-        with open(os.path.join(save_path, f'encoded_data/{dataset_type}/text_train.pkl'), 'wb') as file:
+        with open(os.path.join(save_path, f'text_train.pkl'), 'wb') as file:
             pickle.dump(text_train, file)
 
-        with open(os.path.join(save_path, f'encoded_data/{dataset_type}/image_val.pkl'), 'wb') as file:
+        with open(os.path.join(save_path, f'image_val.pkl'), 'wb') as file:
             pickle.dump(image_val, file)
 
-        with open(os.path.join(save_path, f'encoded_data/{dataset_type}/text_val.pkl'), 'wb') as file:
+        with open(os.path.join(save_path, f'text_val.pkl'), 'wb') as file:
             pickle.dump(text_val, file)
 
         train_encoded = encoded_dataset(image_train, text_train)
@@ -439,16 +439,16 @@ def get_dataset(args):
     elif data_type == 'encoded':
 
         #open the files are saved
-        with open(os.path.join(data_path, f'encoded_data/{dataset_type}/image_train.pkl'), 'rb') as file:
+        with open(os.path.join(data_path, f'image_train.pkl'), 'rb') as file:
             image_train = pickle.load(file)
 
-        with open(os.path.join(data_path, f'encoded_data/{dataset_type}/text_train.pkl'), 'rb') as file:
+        with open(os.path.join(data_path, f'text_train.pkl'), 'rb') as file:
             text_train = pickle.load(file)
             
-        with open(os.path.join(data_path, f'encoded_data/{dataset_type}/image_val.pkl'), 'rb') as file:
+        with open(os.path.join(data_path, f'image_val.pkl'), 'rb') as file:
             image_val = pickle.load(file)
 
-        with open(os.path.join(data_path, f'encoded_data/{dataset_type}/text_val.pkl'), 'rb') as file:
+        with open(os.path.join(data_path, f'text_val.pkl'), 'rb') as file:
             text_val = pickle.load(file)
 
         train_encoded = encoded_dataset(image_train, text_train)
@@ -509,10 +509,10 @@ def test_dataset(args):
         image_test, text_test, _, _ = encode_dataset(freeze, device, test_loader, bz)
 
         # Save to a file using pickle
-        with open(os.path.join(save_path, f'encoded_data/{dataset_type}/image_test.pkl'), 'wb') as file:
+        with open(os.path.join(save_path, f'image_test.pkl'), 'wb') as file:
             pickle.dump(image_test, file)
 
-        with open(os.path.join(save_path, f'encoded_data/{dataset_type}/text_test.pkl'), 'wb') as file:
+        with open(os.path.join(save_path, f'text_test.pkl'), 'wb') as file:
             pickle.dump(text_test, file)
             
         encoded_test = encoded_dataset(image_test, text_test)
@@ -521,10 +521,10 @@ def test_dataset(args):
     elif data_type == 'encoded':
     
         #open the files are saved
-        with open(os.path.join(data_path, f'encoded_data/{dataset_type}/image_test.pkl'), 'rb') as file:
+        with open(os.path.join(data_path, f'image_test.pkl'), 'rb') as file:
             image_test = pickle.load(file)
 
-        with open(os.path.join(data_path, f'encoded_data/{dataset_type}/text_test.pkl'), 'rb') as file:
+        with open(os.path.join(data_path, f'text_test.pkl'), 'rb') as file:
             text_test = pickle.load(file)
         
         encoded_test = encoded_dataset(image_test, text_test)
