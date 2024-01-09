@@ -2,8 +2,7 @@ import parser
 import torch
 from util import encode_dataset, get_map
 
-def metrics_at_k(image_input, text_input, model, Loader, k_vals, batch_size, train_mode):
-    device = model.device
+def metrics_at_k(image_input, text_input, model, device, Loader, k_vals, batch_size, train_mode):
     print("Encoding all data...")
     image_input = image_input.to(device)
     text_input = text_input.to(device)
@@ -134,9 +133,9 @@ def metrics_at_k(image_input, text_input, model, Loader, k_vals, batch_size, tra
     return text_to_image_recall, image_to_text_recall, mAP_t2i, mAP_i2t
 
 
-def test(image_test, text_test, model, test_loader, train_mode):
+def test(image_test, text_test, model, device, test_loader, train_mode):
 
-    recall_t2i, recall_i2t, mAP_t2i, mAP_i2t = metrics_at_k(image_test, text_test, model, Loader = test_loader, k_vals=[1,5,10], batch_size=test_loader.batch_size, train_mode=train_mode)
+    recall_t2i, recall_i2t, mAP_t2i, mAP_i2t = metrics_at_k(image_test, text_test, model, device, Loader = test_loader, k_vals=[1,5,10], batch_size=test_loader.batch_size, train_mode=train_mode)
 
     print("Text-to-image Recall@K")
     for k, x in zip(k_vals, recall_t2i):
