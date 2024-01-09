@@ -1,7 +1,7 @@
 import numpy as np
 import os
 import matplotlib.pyplot as plt
-import clip
+import Clip.clip
 from torch import optim
 import pickle
 from torch.nn import functional as F
