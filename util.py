@@ -368,8 +368,10 @@ def get_dataset(args):
     # if not os.path.exists(save_path):
     #     os.makedirs(save_path)
     # on kaggle
-    save_path = args.model_path
-
+    save_path = os.path.join(args.result_path, f'encoded_data/{dataset_type}/')
+    if not os.path.exists(save_path):
+        os.makedirs(save_path)
+        
     if args.data_type == 'raw':
 
         model, preprocess, device = get_clip_model(args)
@@ -415,16 +417,16 @@ def get_dataset(args):
         image_val, text_val, _, _ = encode_dataset(freeze, device, val_loader, bz)
 
         # Save to a file using pickle
-        with open(os.path.join(data_path, f'encoded_data/{dataset_type}/image_train.pkl'), 'wb') as file:
+        with open(os.path.join(save_path, f'encoded_data/{dataset_type}/image_train.pkl'), 'wb') as file:
             pickle.dump(image_train, file)
 
-        with open(os.path.join(data_path, f'encoded_data/{dataset_type}/text_train.pkl'), 'wb') as file:
+        with open(os.path.join(save_path, f'encoded_data/{dataset_type}/text_train.pkl'), 'wb') as file:
             pickle.dump(text_train, file)
 
-        with open(os.path.join(data_path, f'encoded_data/{dataset_type}/image_val.pkl'), 'wb') as file:
+        with open(os.path.join(save_path, f'encoded_data/{dataset_type}/image_val.pkl'), 'wb') as file:
             pickle.dump(image_val, file)
 
-        with open(os.path.join(data_path, f'encoded_data/{dataset_type}/text_val.pkl'), 'wb') as file:
+        with open(os.path.join(save_path, f'encoded_data/{dataset_type}/text_val.pkl'), 'wb') as file:
             pickle.dump(text_val, file)
 
         train_encoded = encoded_dataset(image_train, text_train)
@@ -469,7 +471,10 @@ def test_dataset(args):
     # if not os.path.exists(save_path):
     #     os.makedirs(save_path)
     # on kaggle
-    save_path = args.model_path
+    save_path = os.path.join(args.result_path, f'encoded_data/{dataset_type}/')
+    if not os.path.exists(save_path):
+        os.makedirs(save_path)
+        
     if args.data_type == 'raw':
 
         model, preprocess, device = get_clip_model(args)
@@ -504,13 +509,14 @@ def test_dataset(args):
         image_test, text_test, _, _ = encode_dataset(freeze, device, test_loader, bz)
 
         # Save to a file using pickle
-        with open(os.path.join(data_path, f'encoded_data/{dataset_type}/image_test.pkl'), 'wb') as file:
+        with open(os.path.join(save_path, f'encoded_data/{dataset_type}/image_test.pkl'), 'wb') as file:
             pickle.dump(image_test, file)
 
-        with open(os.path.join(data_path, f'encoded_data/{dataset_type}/text_test.pkl'), 'wb') as file:
+        with open(os.path.join(save_path, f'encoded_data/{dataset_type}/text_test.pkl'), 'wb') as file:
             pickle.dump(text_test, file)
-
-        test_loader = DataLoader(coco_test, batch_size=bz, shuffle=False)
+            
+        encoded_test = encoded_dataset(image_test, text_test)
+        test_loader = DataLoader(encoded_test, batch_size=bz, shuffle=False)
 
     elif data_type == 'encoded':
     
