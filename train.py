@@ -29,7 +29,7 @@ def val(val_loader, model, loss, train_mode):
 
 def Fine_Tune(args):
 
-    model, optimizer, lr_scheduler, loss_func = train_setup(args)
+    model, device, optimizer, lr_scheduler, loss_func = train_setup(args)
     train_loader, val_loader = get_dataset(args)
     image_test, text_test, test_loader = test_dataset(args)
     model_name = args.dataset + '_' + args.train_mode + '_' + args.model_version
@@ -37,6 +37,8 @@ def Fine_Tune(args):
     train_mode = args.train_mode
     print(f'We will fine tune the {train_mode} structure')
     min_loss = np.inf
+
+    model = model.to(device)
     for epoch in range(args.max_epochs):
         batch_num = 0
         train_loss_list = []
@@ -82,9 +84,10 @@ def Fine_Tune(args):
 
 def Zero_Shot(args):
     train_mode = args.train_mode
-    model = train_setup(args)
+    model, device = train_setup(args)
+    model = model.to(device)
     image_test, text_test, test_loader = test_dataset(args)
-    test(image_test, text_test, model, test_loader = test_loader, train_mode = train_mode)
+    test(image_test, text_test, model, device, test_loader = test_loader, train_mode = train_mode)
 
 
 
