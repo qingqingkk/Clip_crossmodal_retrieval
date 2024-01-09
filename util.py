@@ -363,9 +363,12 @@ def get_dataset(args):
     data_path = args.data_path
 
     #create the path to save the encoded data
-    save_path = os.path.join(data_path, f'encoded_data/{dataset_type}/')
-    if not os.path.exists(save_path):
-        os.makedirs(save_path)
+    # on local
+    # save_path = os.path.join(data_path, f'encoded_data/{dataset_type}/')
+    # if not os.path.exists(save_path):
+    #     os.makedirs(save_path)
+    # on kaggle
+    save_path = args.model_path
 
     if args.data_type == 'raw':
 
@@ -461,10 +464,12 @@ def test_dataset(args):
     data_path = args.data_path
 
     #create the path to save the encoded data
-    save_path = os.path.join(data_path, f'encoded_data/{dataset_type}/')
-    if not os.path.exists(save_path):
-        os.makedirs(save_path)
-
+    # on local
+    # save_path = os.path.join(data_path, f'encoded_data/{dataset_type}/')
+    # if not os.path.exists(save_path):
+    #     os.makedirs(save_path)
+    # on kaggle
+    save_path = args.model_path
     if args.data_type == 'raw':
 
         model, preprocess, device = get_clip_model(args)
