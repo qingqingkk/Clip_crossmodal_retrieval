@@ -14,7 +14,7 @@ def parse_arguments():
     parser.add_argument("--bz", type=int, default=256, 
                         help='baech_size')
 
-    parser.add_argument("--model_version", type=str, default='Vit-B/32', choices=['ViT-B/32', 'ViT-L/16'],
+    parser.add_argument("--model_version", type=str, default='ViT-B/32', choices=['ViT-B/32', 'ViT-L/16'],
                         help="version of clip model")
 
     parser.add_argument("--train_mode", type=str, default='only_proj', choices=['only_proj', 'with_adapter', 'total'],
