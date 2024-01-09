@@ -563,17 +563,17 @@ def model_setup(args):
 
             model = clip_model
 
-        return model
+        return model, device
 
 def train_setup(args):
     if args.task == 'zero_shot':
-        model = model_setup(args)
-        return model
+        model, device = model_setup(args)
+        return model, device
     opt = args.optimizer
     learning_rate = args.lr
     scheduler = args.scheduler
     loss_type = args.loss_type
-    model = model_setup(args)
+    model, device = model_setup(args)
     trainable_params = [p for p in model.parameters() if p.requires_grad]
     if opt == 'Adam':
         optimizer = optim.Adam(trainable_params, lr=learning_rate ,weight_decay=1e-3)
@@ -592,7 +592,7 @@ def train_setup(args):
 
     loss_func = training_losses(loss_type, reduction = 'sum')
 
-    return model, optimizer, scheduler, loss_func
+    return model, device, optimizer, scheduler, loss_func
 
 def plot_loss(train_loss_list, val_loss_list, args):
     max_epoch = args.max_epochs
