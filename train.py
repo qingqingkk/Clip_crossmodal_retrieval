@@ -1,5 +1,5 @@
 import torch
-from util import get_dataset, train_setup, plot_loss
+from util import get_dataset, test_dataset, train_setup, plot_loss
 from test import test
 
 def val(val_loader, model, loss, train_mode):
