@@ -71,7 +71,7 @@ def encode_dataset(model, device, Loader, batch_size):
 
         return image_encodings, text_encodings, text_to_image_map, image_to_text_map
 
-def get_map(Loader, batch_size):
+def get_map(Loader, device, batch_size):
         # image_to_text_map[i] gives the corresponding text indices for the ith image
         #  (as there are multiple pieces of text for each image)
         image_to_text_map = []
