@@ -5,31 +5,31 @@ def parse_arguments():
     parser = argparse.ArgumentParser(formatter_class=argparse.ArgumentDefaultsHelpFormatter)
 
     # Training parameters
-    parser.add_argument("--task", type=str, default='zero_shot', choices=['zero_shot', 'fine_tune']
+    parser.add_argument("--task", type=str, default='zero_shot', choices=['zero_shot', 'fine_tune'],
                         help="define the task")
 
-    parser.add_argument("--data_type", type=str, default='raw', choices=['raw', 'encoded']
+    parser.add_argument("--data_type", type=str, default='raw', choices=['raw', 'encoded'],
                         help="the data is image&text or encoded data")
 
     parser.add_argument("--bz", type=int, default=256, 
                         help='baech_size')
 
-    parser.add_argument("--model_version", type=str, default='Vit-B/32', choices=['Vit-B/32', 'Vit-L/16']
+    parser.add_argument("--model_version", type=str, default='Vit-B/32', choices=['Vit-B/32', 'Vit-L/16'],
                         help="version of clip model")
 
-    parser.add_argument("--train_mode", type=str, default='only_proj', choices=['only_proj', 'with_adapter', 'total']
+    parser.add_argument("--train_mode", type=str, default='only_proj', choices=['only_proj', 'with_adapter', 'total'],
                         help="train only projection layer or total structure")
 
-    parser.add_argument("--optimizer", type=str, default='AdamW', choices=['sgd', 'Adam', 'AdamW']
+    parser.add_argument("--optimizer", type=str, default='AdamW', choices=['sgd', 'Adam', 'AdamW'],
                         help="type of optimizer")
 
     parser.add_argument("--lr", type=float, default=1e-4,
                         help="learning rate")
 
-    parser.add_argument("--scheduler", type=str, default=None, choices = ['StepLR', 'ReduceLROnPlateau']
+    parser.add_argument("--scheduler", type=str, default=None, choices = ['StepLR', 'ReduceLROnPlateau'],
                         help="type of scheduler")
 
-    parser.add_argument("--loss_type", type=str, default='cos_embedd', choices = ['corss_entropy', 'contrastive', 'info_nce_loss', 'nt_xent', 'cos_embedd', 'mix']
+    parser.add_argument("--loss_type", type=str, default='cos_embedd', choices = ['corss_entropy', 'contrastive', 'info_nce_loss', 'nt_xent', 'cos_embedd', 'mix'],
                         help="type of loss")               
 
     parser.add_argument("--max_epochs", type=int, default=20,
@@ -38,7 +38,7 @@ def parse_arguments():
     parser.add_argument("--num_workers", type=int, default=4,
                         help="number of processes to use for data loading / preprocessing")
 
-    parser.add_argument("--dataset", type=str, default='moscoco', choices = ['moscoco', 'flickr']
+    parser.add_argument("--dataset", type=str, default='moscoco', choices = ['moscoco', 'flickr'],
                         help="type of dataset")
 
     parser.add_argument("--resume", action='store_true',
