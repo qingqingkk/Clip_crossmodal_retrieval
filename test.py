@@ -8,10 +8,10 @@ def metrics_at_k(image_input, text_input, model, device, Loader, k_vals, batch_s
     text_input = text_input.to(device)
     
     if train_mode == 'total':
-        image_encodings, text_encodings, text_to_image_map, image_to_text_map = encode_dataset(model, Loader, batch_size=batch_size)
+        image_encodings, text_encodings, text_to_image_map, image_to_text_map = encode_dataset(model, device, Loader, batch_size=batch_size)
     else:
         image_encodings, text_encodings = model(image_input, text_input)
-        text_to_image_map, image_to_text_map = get_map(Loader, batch_size)
+        text_to_image_map, image_to_text_map = get_map(Loader, device, batch_size)
 
     image_encodings = image_encodings / image_encodings.norm(dim=-1, keepdim=True)
     text_encodings = text_encodings / text_encodings.norm(dim=-1, keepdim=True)
