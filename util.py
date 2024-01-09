@@ -351,10 +351,7 @@ def get_clip_model(args):
 
     device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
     version = args.model_version
-    if version == 'Vit-B/32':
-        model, preprocess = clip.load("Vit-B/32",device=device,jit=False)
-    elif version == 'Vit-L/16':
-        model, preprocess = clip.load("Vit-B/32",device=device,jit=False)
+    model, preprocess = clip.load(version, device=device, jit=False)
 
     return model, preprocess, device
 
