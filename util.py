@@ -544,7 +544,7 @@ def model_setup(args):
         elif args.train_mode == 'total':
             model = clip_model
         
-        model.load_state_dict(checkpoint).
+        model.load_state_dict(checkpoint)
 
     else:
         if args.train_mode == 'only_proj':
