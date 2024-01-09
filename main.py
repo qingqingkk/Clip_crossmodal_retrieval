@@ -12,7 +12,7 @@ if __name__ == '__main__':
     if not os.path.exists(result_dir):
         os.makedirs(result_dir)
 
-
+    print(f'Task: {task}, on {args.dataset} dataset')
     if task == 'zero_shot':
         Zero_Shot(args)
     elif task == 'fine_tune':
