@@ -24,7 +24,7 @@ import string
 
 ''' Dataset related '''
 
-def encode_dataset(model, Loader, batch_size):
+def encode_dataset(model, device, Loader, batch_size):
 
     with torch.no_grad():
         image_to_text_map = []
@@ -250,7 +250,7 @@ class training_losses:
             
         elif self.type == 'cos_embedd':
             cosine_similarity = F.cosine_similarity(image_features[:, None, :], text_features[None, :, :], dim=2)
-            target = torch.eye(cosine_similarity.shape[0],dtype=torch.long, device=device)
+            target = torch.eye(cosine_similarity.shape[0],dtype=torch.long, device=image_features.device)
             tot_loss = 0.5 * target * (1 - cosine_similarity) + 0.5 * (1 - target) * torch.clamp(cosine_similarity - 0.1, min=0.0)
             if self.reduction == 'sum':
                 tot_loss = torch.sum(tot_loss)
@@ -266,7 +266,7 @@ class training_losses:
             ce_final_loss = (image_loss + text_loss)/2
             
             cosine_similarity = F.cosine_similarity(image_features[:, None, :], text_features[None, :, :], dim=2)
-            target = torch.eye(cosine_similarity.shape[0],dtype=torch.long, device=device)
+            target = torch.eye(cosine_similarity.shape[0],dtype=torch.long, device=image_features.device)
             cos_loss = 0.5 * target * (1 - cosine_similarity) + 0.5 * (1 - target) * torch.clamp(cosine_similarity - 0.1, min=0.0)
             if self.reduction == 'sum':
                 cos_loss = torch.sum(cos_loss)
@@ -411,8 +411,8 @@ def get_dataset(args):
             # if we want to training all model structure, we return raw data
             return train_loader, val_loader
         
-        image_train, text_train, _, _ = encode_dataset(freeze, train_loader, bz)
-        image_val, text_val, _, _ = encode_dataset(freeze, val_loader, bz)
+        image_train, text_train, _, _ = encode_dataset(freeze, device, train_loader, bz)
+        image_val, text_val, _, _ = encode_dataset(freeze, device, val_loader, bz)
 
         # Save to a file using pickle
         with open(os.path.join(data_path, f'encoded_data/{dataset_type}/image_train.pkl'), 'wb') as file:
@@ -501,7 +501,7 @@ def test_dataset(args):
             # if we want to training all model structure, we return raw data
             return test_loader, None
         
-        image_test, text_test, _, _ = encode_dataset(freeze, test_loader, bz)
+        image_test, text_test, _, _ = encode_dataset(freeze, device, test_loader, bz)
 
         # Save to a file using pickle
         with open(os.path.join(data_path, f'encoded_data/{dataset_type}/image_test.pkl'), 'wb') as file:
@@ -544,7 +544,7 @@ def model_setup(args):
         elif args.train_mode == 'total':
             model = clip_model
         
-        model.load_state_dict(checkpoint)
+        model.load_state_dict(checkpoint).
 
     else:
         if args.train_mode == 'only_proj':
