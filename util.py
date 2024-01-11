@@ -582,7 +582,7 @@ def train_setup(args):
     elif opt == 'AdamW':
         optimizer = optim.AdamW(trainable_params, lr=learning_rate, betas=(0.9,0.98), eps=1e-6,weight_decay=1e-3)
     
-    if scheduler != None:
+    if scheduler is not None:
         if scheduler == 'StepLR':
             lr_scheduler = StepLR(optimizer, step_size=5, gamma=0.6)
         elif scheduler == 'ReduceLROnPlateau':
@@ -592,7 +592,7 @@ def train_setup(args):
 
     loss_func = training_losses(loss_type, reduction = 'sum')
 
-    return model, device, optimizer, scheduler, loss_func
+    return model, device, optimizer, lr_scheduler, loss_func
 
 def plot_loss(train_loss_list, val_loss_list, args):
     max_epoch = args.max_epochs
