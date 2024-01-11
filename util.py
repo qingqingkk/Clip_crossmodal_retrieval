@@ -578,7 +578,7 @@ def train_setup(args):
     if opt == 'Adam':
         optimizer = optim.Adam(trainable_params, lr=learning_rate ,weight_decay=1e-3)
     elif opt == 'sgd':
-        optimizer = optim.sgd(trainable_params, lr=learning_rate ,weight_decay=1e-3, momentum=0.9)
+        optimizer = optim.SGD(trainable_params, lr=learning_rate ,weight_decay=1e-3, momentum=0.9)
     elif opt == 'AdamW':
         optimizer = optim.AdamW(trainable_params, lr=learning_rate, betas=(0.9,0.98), eps=1e-6,weight_decay=1e-3)
     
