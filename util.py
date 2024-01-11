@@ -394,7 +394,7 @@ def get_dataset(args):
             coco_train, coco_val = torch.utils.data.random_split(coco, [train_size, val_size])
 
             train_loader = DataLoader(coco_train,batch_size=bz,shuffle=False,num_workers=num_w,pin_memory=False)
-            val_loader = DataLoader(coco_val,batch_size=bz,shuffle=Ture,num_workers=num_w,pin_memory=False)
+            val_loader = DataLoader(coco_val,batch_size=bz,shuffle=True,num_workers=num_w,pin_memory=False)
         
         elif dataset_type == 'flickr':
             flick= Flickr30k(root=os.path.join(data_path, 'images'),
@@ -407,7 +407,7 @@ def get_dataset(args):
             train_dataset, val_dataset, _ = torch.utils.data.random_split(flick, [train_size, val_size, test_size])
 
             train_loader = DataLoader(train_dataset,batch_size=bz,shuffle=False,num_workers=num_w,pin_memory=False)
-            val_loader = DataLoader(val_dataset,batch_size=bz,shuffle=Ture,num_workers=num_w,pin_memory=False)
+            val_loader = DataLoader(val_dataset,batch_size=bz,shuffle=True,num_workers=num_w,pin_memory=False)
         
         if args.train_mode == 'total':
             # if we want to training all model structure, we return raw data
