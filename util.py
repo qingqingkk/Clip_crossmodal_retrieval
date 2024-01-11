@@ -391,7 +391,7 @@ def get_dataset(args):
             train_size = int(train_ratio * len(coco))
             val_size = len(coco) - train_size
 
-            train, val = torch.utils.data.random_split(coco, [train_size, val_size])
+            coco_train, coco_val = torch.utils.data.random_split(coco, [train_size, val_size])
 
             train_loader = DataLoader(coco_train,batch_size=bz,shuffle=False,num_workers=num_w,pin_memory=False)
             val_loader = DataLoader(coco_val,batch_size=bz,shuffle=Ture,num_workers=num_w,pin_memory=False)
