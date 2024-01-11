@@ -30,9 +30,11 @@ def val(val_loader, model, loss, train_mode):
     return tot_loss/len(val_loader)
 
 def Fine_Tune(args):
-
+    print('Loading the model...')
     model, device, optimizer, lr_scheduler, loss_func = train_setup(args)
+    print('Encoding training and validation dataset...)
     train_loader, val_loader = get_dataset(args)
+    print('Encoding test dataset...')
     image_test, text_test, test_loader = test_dataset(args)
     model_name = args.dataset + '_' + args.train_mode + '_' + args.model_version
     model_dir = args.model_path
@@ -43,6 +45,7 @@ def Fine_Tune(args):
     model = model.to(device)
     for epoch in range(args.max_epochs):
         batch_num = 0
+        tot_loss = 0
         train_loss_list = []
         val_loss_list = []
         for image, text in tqdm(train_loader):
