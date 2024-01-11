@@ -436,7 +436,7 @@ def get_dataset(args):
         val_encoded_loader = DataLoader(val_encoded, batch_size=bz, shuffle=True)
 
 
-    elif data_type == 'encoded':
+    elif args.data_type == 'encoded':
 
         #open the files are saved
         with open(os.path.join(data_path, f'image_train.pkl'), 'rb') as file:
