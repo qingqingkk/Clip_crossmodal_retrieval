@@ -33,22 +33,26 @@ def val(val_loader, model, device, loss, train_mode):
 def Fine_Tune(args):
     print('Loading the model...')
     model, device, optimizer, lr_scheduler, loss_func = train_setup(args)
+    
     print('Encoding training and validation dataset...')
     train_loader, val_loader = get_dataset(args)
+    
     print('Encoding test dataset...')
     image_test, text_test, test_loader = test_dataset(args)
     model_name = args.dataset + '_' + args.train_mode
     model_dir = args.model_path
     train_mode = args.train_mode
+    
     print(f'We will fine tune the {train_mode} structure')
     min_loss = np.inf
-
+    train_loss_list = []
+    val_loss_list = []
     model = model.to(device)
+    
     for epoch in range(args.max_epochs):
         batch_num = 0
         tot_loss = 0
-        train_loss_list = []
-        val_loss_list = []
+
         for image, text in tqdm(train_loader):
             random_indices = torch.randint(0, 5, (len(image),))
             text = torch.stack([text[i, idx] for i, idx in enumerate(random_indices)]).to(device)
