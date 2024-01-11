@@ -32,7 +32,7 @@ def val(val_loader, model, loss, train_mode):
 def Fine_Tune(args):
     print('Loading the model...')
     model, device, optimizer, lr_scheduler, loss_func = train_setup(args)
-    print('Encoding training and validation dataset...)
+    print('Encoding training and validation dataset...')
     train_loader, val_loader = get_dataset(args)
     print('Encoding test dataset...')
     image_test, text_test, test_loader = test_dataset(args)
