@@ -72,7 +72,7 @@ def Fine_Tune(args):
             train_loss.backward()
             optimizer.step()
 
-        cur_loss = val(val_loader, model, loss_func)
+        cur_loss = val(val_loader, model, loss_func, train_mode)
         train_loss_list.append(tot_loss.item())
         val_loss_list.append(cur_loss.item())
 
