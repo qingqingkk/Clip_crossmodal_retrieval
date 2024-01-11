@@ -73,7 +73,7 @@ def Fine_Tune(args):
             optimizer.step()
 
         cur_loss = val(val_loader, model, loss_func, train_mode)
-        train_loss_list.append(tot_loss.item())
+        train_loss_list.append(tot_loss.item()/len(train_loader))
         val_loss_list.append(cur_loss.item())
 
         if cur_loss < min_loss:
