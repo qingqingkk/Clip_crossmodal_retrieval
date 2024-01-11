@@ -518,7 +518,7 @@ def test_dataset(args):
         encoded_test = encoded_dataset(image_test, text_test)
         test_loader = DataLoader(encoded_test, batch_size=bz, shuffle=False)
 
-    elif data_type == 'encoded':
+    elif args.data_type == 'encoded':
     
         #open the files are saved
         with open(os.path.join(data_path, f'image_test.pkl'), 'rb') as file:
