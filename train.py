@@ -3,6 +3,7 @@ from util import get_dataset, test_dataset, train_setup, plot_loss
 from test import test
 import numpy as np
 from tqdm import tqdm
+import os
 
 def val(val_loader, model, device, loss, train_mode):
     model.eval()
