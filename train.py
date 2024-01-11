@@ -4,7 +4,7 @@ from test import test
 import numpy as np
 from tqdm import tqdm
 
-def val(val_loader, model, loss, train_mode):
+def val(val_loader, model, device, loss, train_mode):
     model.eval()
     tot_loss = 0
     for image, text in val_loader:
@@ -72,7 +72,7 @@ def Fine_Tune(args):
             train_loss.backward()
             optimizer.step()
 
-        cur_loss = val(val_loader, model, loss_func, train_mode)
+        cur_loss = val(val_loader, model, device, loss_func, train_mode)
         train_loss_list.append(tot_loss.item()/len(train_loader))
         val_loss_list.append(cur_loss.item())
 
