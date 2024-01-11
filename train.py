@@ -1,6 +1,8 @@
 import torch
 from util import get_dataset, test_dataset, train_setup, plot_loss
 from test import test
+import numpy as np
+from tqdm import tqdm
 
 def val(val_loader, model, loss, train_mode):
     model.eval()
