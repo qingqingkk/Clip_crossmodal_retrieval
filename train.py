@@ -77,7 +77,7 @@ def Fine_Tune(args):
         val_loss_list.append(cur_loss.item())
 
         if cur_loss < min_loss:
-            min_loss = cur_lossF
+            min_loss = cur_loss
             torch.save(model.state_dict(), os.path.join(model_dir, f"{model_name}.pth"))
             print(f"min val loss: {min_loss}")
         
