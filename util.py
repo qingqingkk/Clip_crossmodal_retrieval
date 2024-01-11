@@ -536,7 +536,7 @@ def test_dataset(args):
 
 def model_setup(args):
     clip_model, preprocess, device = get_clip_model(args)
-    model_name = args.dataset + '_' + args.train_mode + '_' + args.model_version
+    model_name = args.dataset + '_' + args.train_mode
     
     if args.resume:
         model_dir = os.path.join(args.model_path, f'{model_name}.pth')
