@@ -81,8 +81,8 @@ def Fine_Tune(args):
             min_loss = cur_loss
             torch.save(model.state_dict(), os.path.join(model_dir, f"{model_name}.pth"))
             print(f"min val loss: {min_loss}")
-        
-        lr_scheduler.step(cur_loss)
+        if  lr_scheduler is not None:
+            lr_scheduler.step(cur_loss)
         test(image_test, text_test, model, device, test_loader = test_loader, train_mode = train_mode)
 
     plot_loss(train_loss_list, val_loss_list, args)
