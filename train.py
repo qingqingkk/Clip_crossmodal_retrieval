@@ -37,7 +37,7 @@ def Fine_Tune(args):
     train_loader, val_loader = get_dataset(args)
     print('Encoding test dataset...')
     image_test, text_test, test_loader = test_dataset(args)
-    model_name = args.dataset + '_' + args.train_mode + '_' + args.model_version
+    model_name = args.dataset + '_' + args.train_mode
     model_dir = args.model_path
     train_mode = args.train_mode
     print(f'We will fine tune the {train_mode} structure')
