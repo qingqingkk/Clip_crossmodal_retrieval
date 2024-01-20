@@ -17,10 +17,9 @@ This repository contains code and instructions for conducting a crossmodal retri
 Recall@k
 MAP@k
 
-# Usage
-1. **zero-shot:**
-!python main.py --data_path ./result/encoded_data/flickr --task zero-shot --scheduler ReduceLROnPlateau --data_type encoded --train_mode with_adapter --loss_type cos_embedd --max_epochs 50
-1. **Fine-Tune:**
+# Usage example
+（Instructions can be found in parser.py)
+
 !python main.py --data_path ./result/encoded_data/flickr --task fine_tune --scheduler ReduceLROnPlateau --data_type encoded --train_mode with_adapter --loss_type cos_embedd --max_epochs 50
 
 
