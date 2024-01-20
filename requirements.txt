@@ -1,5 +1,9 @@
---yes -c pytorch pytorch=1.7.1 torchvision cudatoolkit=11.0
-ftfy regex tqdm
-pycocotools
--U --force-reinstall patool
-pytorch_metric_learning
+pytorch==1.7.1
+torchvision==0.8.2
+cudatoolkit==11.0
+ftfy==5.9
+regex==2020.11.13
+tqdm==4.54.1
+pycocotools==2.0.2
+patool==1.12
+pytorch_metric_learning==0.9.99
