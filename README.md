@@ -20,7 +20,7 @@ MAP@k
 # Usage example
 （Instructions can be found in parser.py)
 
-!python main.py --data_path ./result/encoded_data/flickr --task fine_tune --scheduler ReduceLROnPlateau --data_type encoded --train_mode with_adapter --loss_type cos_embedd --max_epochs 50
+!python main.py
 
 
 Copy the github address:
