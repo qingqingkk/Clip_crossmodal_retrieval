@@ -19,9 +19,9 @@ MAP@k
 
 # Usage
 1. **zero-shot:**
-!python main.py --data_path ./result/encoded_data/flickr --task fine_tune --scheduler ReduceLROnPlateau --data_type encoded --train_mode with_adapter --loss_type info_nce_loss --max_epochs 50
+!python main.py --data_path ./result/encoded_data/flickr --task zero-shot --scheduler ReduceLROnPlateau --data_type encoded --train_mode with_adapter --loss_type cos_embedd --max_epochs 50
 1. **Fine-Tune:**
-!python main.py --data_path ./result/encoded_data/flickr --task fine_tune --scheduler ReduceLROnPlateau --data_type encoded --train_mode with_adapter --loss_type info_nce_loss --max_epochs 50
+!python main.py --data_path ./result/encoded_data/flickr --task fine_tune --scheduler ReduceLROnPlateau --data_type encoded --train_mode with_adapter --loss_type cos_embedd --max_epochs 50
 
 
 Copy the github address:
